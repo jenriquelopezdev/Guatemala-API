@@ -24,7 +24,11 @@ El repositorio contiene un archivo _.env.example_ que es una plantilla del archi
 ```  DB_PASSWORD=  ``` 
 6. Genere una clave de cifrado de la aplicación:``` php artisan key:generate ```  
 Laravel requiere que tenga una clave de cifrado de la aplicación que se almacena en su archivo _.env_ para cifrar cookies, hashes de contraseña y más.
-7. Ejecute el siguiente comando para migrar su base de datos: ``` php artisan migrate  ```  
+7. Ejecute el siguiente comando para migrar su base de datos: ``` php artisan migrate:fresh --seed  ```  
+8. Luego, debes ejecutar el comando: ``` php artisan passport:install  ```  
+Este comando creará las llaves de encriptación necesarias para generar los tokens de acceso. Adicionalmente el comando creará el “personal access” y “password grant” de los clientes que se usarán para generar los tokens de acceso:
+
+
 
 Si tiene PHP instalado localmente y desea utilizar el servidor de desarrollo integrado de PHP para servir su aplicación, puede usar el comando serve Artisan. Este comando iniciará un servidor de desarrollo en
 [localhost:8000](http://localhost:8000):
