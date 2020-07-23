@@ -17,8 +17,8 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        $promotion = Promotion::all();
-        return response(['promotion' => PromotionResource::collection($promotion), 'message' => 'Retrieved successfully'], 200);
+        $promotion = Promotion::paginate(10);
+        return response()->json($promotion, 200);
     }
 
     /**
@@ -56,7 +56,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        return response([ 'promotion' => new PromotionResource($promotion), 'message' => 'Retrieved successfully'], 200);
+        return response(['promotion' => new PromotionResource($promotion), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
@@ -70,7 +70,7 @@ class PromotionController extends Controller
     {
         $promotion->update($request->all());
 
-        return response([ 'promotion' => new PromotionResource($promotion), 'message' => 'Retrieved successfully'], 200);
+        return response(['promotion' => new PromotionResource($promotion), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
