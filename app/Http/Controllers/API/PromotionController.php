@@ -56,7 +56,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        //
+        return response([ 'promotion' => new PromotionResource($promotion), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
