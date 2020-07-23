@@ -68,7 +68,9 @@ class PromotionController extends Controller
      */
     public function update(Request $request, Promotion $promotion)
     {
-        //
+        $promotion->update($request->all());
+
+        return response([ 'promotion' => new PromotionResource($promotion), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
@@ -79,6 +81,8 @@ class PromotionController extends Controller
      */
     public function destroy(Promotion $promotion)
     {
-        //
+        $promotion->delete();
+
+        return response(['message' => 'Deleted']);
     }
 }
