@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PromotionResource;
 use App\Promotion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PromotionController extends Controller
 {
@@ -17,7 +18,7 @@ class PromotionController extends Controller
     public function index()
     {
         $promotion = Promotion::all();
-        return response(['$promotion' => PromotionResource::collection($promotion), 'message' => 'Retrieved successfully'], 200);
+        return response(['promotion' => PromotionResource::collection($promotion), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
@@ -28,7 +29,23 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'title' => 'required|max:255',
+            'price' => 'required',
+            'address' => 'required|max:255',
+            'latitude' => 'required',
+            'longitude' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors(), 'Validation Error']);
+        }
+
+        $promotion = Promotion::create($data);
+
+        return response(['promotion' => new PromotionResource($promotion), 'message' => 'Created successfully'], 200);
     }
 
     /**
