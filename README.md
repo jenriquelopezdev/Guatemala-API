@@ -27,6 +27,8 @@ Laravel requiere que tenga una clave de cifrado de la aplicación que se almacen
 7. Ejecute el siguiente comando para migrar su base de datos: ``` php artisan migrate:fresh --seed  ```  
 8. Luego, debes ejecutar el comando: ``` php artisan passport:install  ```  
 Este comando creará las llaves de encriptación necesarias para generar los tokens de acceso. Adicionalmente el comando creará el “personal access” y “password grant” de los clientes que se usarán para generar los tokens de acceso:
+9. Ejecute los UnitTesting ``` composer test ```  
+10. Generar documentación swagger ```  php artisan l5-swagger:generate ```  
 
 
 
@@ -36,3 +38,6 @@ Si tiene PHP instalado localmente y desea utilizar el servidor de desarrollo int
 ```
 php artisan serve
 ```
+
+Para visualizar la documentación visitar la url:
+[localhost:8000/api/documentation](http://localhost:8000/api/documentation):
